@@ -4,38 +4,38 @@
   - Desktop: Grid layout with hover effects
 {% endcomment %}
 
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@9.4.1/swiper-bundle.min.css"
-/>
-<script
-  src="https://cdn.jsdelivr.net/npm/swiper@9.4.1/swiper-bundle.min.js"
-  defer
-></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9.4.1/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@9.4.1/swiper-bundle.min.js" defer></script>
 <link rel="stylesheet" href="{{ 'juice.css' | asset_url }}" />
 <script src="{{ 'juice.js' | asset_url }}" defer></script>
 
-<div class="juice-carousel swiper-container">
-  <div class="swiper-wrapper">
-    <!-- Slide 1: Red -->
-    <div class="swiper-slide juice-card" style="background-color: #FF0000;"></div>
-    <!-- Slide 2: Orange -->
-    <div class="swiper-slide juice-card" style="background-color: #FF7F00;"></div>
-    <!-- Slide 3: Yellow -->
-    <div class="swiper-slide juice-card" style="background-color: #FFFF00;"></div>
-    <!-- Slide 4: Green -->
-    <div class="swiper-slide juice-card" style="background-color: #00FF00;"></div>
-    <!-- Slide 5: Blue -->
-    <div class="swiper-slide juice-card" style="background-color: #0000FF;"></div>
-    <!-- Slide 6: Indigo -->
-    <div class="swiper-slide juice-card" style="background-color: #4B0082;"></div>
-    <!-- Slide 7: Violet -->
-    <div class="swiper-slide juice-card" style="background-color: #8B00FF;"></div>
-    <!-- Slide 8: Pink -->
-    <div class="swiper-slide juice-card" style="background-color: #FF1493;"></div>
+<div class="juice-container">
+  {% comment %} Mobile: Swiper carousel {% endcomment %}
+  <div class="juice-carousel swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide juice-card" style="background-color: #FF0000;"></div>
+      <div class="swiper-slide juice-card" style="background-color: #FF7F00;"></div>
+      <div class="swiper-slide juice-card" style="background-color: #FFFF00;"></div>
+      <div class="swiper-slide juice-card" style="background-color: #00FF00;"></div>
+      <div class="swiper-slide juice-card" style="background-color: #0000FF;"></div>
+      <div class="swiper-slide juice-card" style="background-color: #4B0082;"></div>
+      <div class="swiper-slide juice-card" style="background-color: #8B00FF;"></div>
+      <div class="swiper-slide juice-card" style="background-color: #FF1493;"></div>
+    </div>
+    <div class="swiper-pagination"></div>
   </div>
-  <!-- Pagination dots for desktop and mobile -->
-  <div class="swiper-pagination"></div>
+
+  {% comment %} Desktop: Grid layout {% endcomment %}
+  <div class="juice-grid">
+    <div class="juice-card" style="background-color: #FF0000;"></div>
+    <div class="juice-card" style="background-color: #FF7F00;"></div>
+    <div class="juice-card" style="background-color: #FFFF00;"></div>
+    <div class="juice-card" style="background-color: #00FF00;"></div>
+    <div class="juice-card" style="background-color: #0000FF;"></div>
+    <div class="juice-card" style="background-color: #4B0082;"></div>
+    <div class="juice-card" style="background-color: #8B00FF;"></div>
+    <div class="juice-card" style="background-color: #FF1493;"></div>
+  </div>
 </div>
 
 {% schema %}

@@ -1,11 +1,98 @@
 /* Juice Carousel Styles */
 
 /* Base Styles */
+.juice-container {
+  width: 100%;
+  min-height: 100vh;
+}
+
 .juice-carousel {
   position: relative;
   width: 100%;
   height: 100vh;
   background: #000;
+}
+
+/* Mobile Swiper Styles */
+[data-behavior="mobile-only"] {
+  display: block;
+}
+
+[data-behavior="desktop-only"] {
+  display: none;
+}
+
+.juice-carousel .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-pagination {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.7);
+  opacity: 1;
+  margin: 0.5rem 0;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ffd500;
+}
+
+/* Desktop Grid Styles */
+@media (min-width: 768px) {
+  .juice-container {
+    min-height: auto;
+    padding: 2rem 0;
+  }
+
+  [data-behavior="mobile-only"] {
+    display: none !important;
+  }
+
+  [data-behavior="desktop-only"] {
+    display: block !important;
+  }
+
+  .juice-carousel {
+    display: none !important;
+  }
+
+  .juice-grid {
+    display: grid;
+    gap: 16px;
+    padding: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .juice-card {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    background-color: inherit; /* Preserve the background color */
+  }
+
+  .juice-card:hover {
+    transform: translateY(-4px);
+  }
 }
 
 /* Mobile Carousel */
@@ -104,117 +191,6 @@
   background: #000;
 }
 
-/* Swiper Pagination */
-.swiper-pagination {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-}
-
-.swiper-pagination-bullet {
-  width: 8px;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.7);
-  opacity: 1;
-  margin: 0.5rem 0;
-}
-
-.swiper-pagination-bullet-active {
-  background-color: #ffd500;
-}
-
-/* Desktop Grid */
-@media (min-width: 768px) {
-  .juice-carousel__mobile {
-    display: none;
-  }
-
-  .juice-carousel__desktop {
-    display: block;
-    padding: 2rem;
-  }
-
-  .juice-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .juice-card {
-    position: relative;
-    aspect-ratio: 9/16;
-    border-radius: 8px;
-    overflow: hidden;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  }
-
-  .juice-card__video-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-
-  .juice-card__video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .juice-card:hover .juice-card__video {
-    opacity: 1;
-  }
-
-  .juice-card__overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 1rem;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-    color: #fff;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-  }
-
-  .juice-card:hover .juice-card__overlay {
-    transform: translateY(0);
-  }
-
-  .juice-card__title {
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .juice-card__teaser {
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-    opacity: 0.9;
-  }
-
-  .juice-card__buttons {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .juice-carousel {
-    height: auto;
-    padding: 2rem 0;
-  }
-}
-
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -264,4 +240,150 @@
 .juice-card {
   width: 100%;
   height: 100%;
+}
+
+/* Hide grid on mobile, show only carousel */
+[data-behavior="desktop-only"] {
+  display: none;
+}
+
+/* Hide carousel on desktop, show only grid */
+[data-behavior="mobile-only"] {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  [data-behavior="mobile-only"] {
+    display: none;
+  }
+  [data-behavior="desktop-only"] {
+    display: grid;
+  }
+}
+
+/* Mobile Swiper Styles */
+.juice-carousel {
+  width: 100%;
+  height: 100vh;
+}
+
+.juice-carousel .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-pagination-bullet {
+  background-color: rgba(255, 255, 255, 0.7);
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ffd500; /* yellow accent */
+}
+
+/* Desktop Grid Styles */
+.juice-grid {
+  display: grid;
+  gap: 16px;
+  padding: 16px;
+  /* Auto-fit columns, each column min 200px wide, max 1fr */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  justify-items: center;
+}
+
+.juice-card {
+  width: 100%;
+  /* Maintain 9:16 aspect ratio: height = width * (16/9) */
+  aspect-ratio: 9 / 16;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* On desktop override height so carousel is hidden anyway */
+@media (min-width: 768px) {
+  .juice-carousel {
+    display: none;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 767px) {
+  .juice-carousel {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+  }
+
+  .juice-grid {
+    display: none;
+  }
+
+  .juice-carousel .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-pagination {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+
+  .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.7);
+    opacity: 1;
+    margin: 0.5rem 0;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: #ffd500;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 768px) {
+  .juice-carousel {
+    display: none;
+  }
+
+  .juice-container {
+    padding: 2rem;
+  }
+
+  .juice-grid {
+    display: grid !important;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .juice-card {
+    display: block !important;
+    width: 100%;
+    height: 0;
+    padding-bottom: 177.78%; /* 16:9 aspect ratio */
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .juice-card:hover {
+    transform: translateY(-4px);
+  }
 } 

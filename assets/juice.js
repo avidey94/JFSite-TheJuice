@@ -1,5 +1,42 @@
 // Juice Carousel JavaScript
 
+// Initialize Swiper on mobile only
+document.addEventListener('DOMContentLoaded', function() {
+  initializeSwiper();
+});
+
+// Handle window resize
+window.addEventListener('resize', handleResize);
+
+function initializeSwiper() {
+  const isMobile = window.matchMedia('(max-width: 767px)').matches;
+  const swiperContainer = document.querySelector('.juice-carousel.swiper-container');
+  
+  if (isMobile && swiperContainer && !swiperContainer.swiper) {
+    new Swiper('.juice-carousel.swiper-container', {
+      direction: 'vertical',
+      loop: false,
+      slidesPerView: 1,
+      spaceBetween: 0,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      }
+    });
+  }
+}
+
+function handleResize() {
+  const isMobile = window.matchMedia('(max-width: 767px)').matches;
+  const swiperContainer = document.querySelector('.juice-carousel.swiper-container');
+  
+  if (isMobile && swiperContainer && !swiperContainer.swiper) {
+    initializeSwiper();
+  } else if (!isMobile && swiperContainer && swiperContainer.swiper) {
+    swiperContainer.swiper.destroy(true, true);
+  }
+}
+
 class JuiceCarousel {
   constructor() {
     this.init();
@@ -200,11 +237,6 @@ class JuiceCarousel {
     }
   }
 }
-
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  new JuiceCarousel();
-});
 
 // Add heart beat animation
 const style = document.createElement('style');
