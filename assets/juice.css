@@ -1,0 +1,240 @@
+/* Juice Carousel Styles */
+
+/* Base Styles */
+.juice-carousel {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: #000;
+}
+
+/* Mobile Carousel */
+.juice-carousel__mobile {
+  display: block;
+  width: 100%;
+  height: 100vh;
+}
+
+.juice-carousel__desktop {
+  display: none;
+}
+
+.juice-slide {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.juice-slide__video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.juice-slide__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate3d(0, 0, 0);
+}
+
+.juice-slide__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: #fff;
+  z-index: 2;
+}
+
+.juice-slide__title {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.juice-slide__teaser {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.juice-slide__buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Button Styles */
+.juice-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.juice-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.juice-btn--youtube:hover {
+  background: #ff0000;
+}
+
+.juice-btn--spotify:hover {
+  background: #1DB954;
+}
+
+.juice-btn--apple:hover {
+  background: #000;
+}
+
+/* Swiper Pagination */
+.swiper-pagination {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0.5;
+  margin: 0.5rem 0;
+}
+
+.swiper-pagination-bullet-active {
+  background: #f2cc43;
+  opacity: 1;
+}
+
+/* Desktop Grid */
+@media (min-width: 768px) {
+  .juice-carousel__mobile {
+    display: none;
+  }
+
+  .juice-carousel__desktop {
+    display: block;
+    padding: 2rem;
+  }
+
+  .juice-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .juice-card {
+    position: relative;
+    aspect-ratio: 9/16;
+    border-radius: 1rem;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .juice-card__video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .juice-card__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .juice-card:hover .juice-card__video {
+    opacity: 1;
+  }
+
+  .juice-card__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: #fff;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .juice-card:hover .juice-card__overlay {
+    transform: translateY(0);
+  }
+
+  .juice-card__title {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .juice-card__teaser {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+  }
+
+  .juice-card__buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.juice-slide__overlay,
+.juice-card__overlay {
+  animation: fadeIn 0.3s ease;
+}
+
+.juice-btn {
+  animation: slideUp 0.3s ease;
+  animation-fill-mode: both;
+}
+
+.juice-btn:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.juice-btn:nth-child(3) {
+  animation-delay: 0.2s;
+} 
