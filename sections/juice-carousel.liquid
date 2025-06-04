@@ -15,6 +15,7 @@
     <div class="swiper-wrapper">
       {% for i in (1..8) %}
       <div class="swiper-slide juice-card">
+        <div class="juice-card__label">Episode {{ i }}: XYZ</div>
         <video
           class="juice-video"
           src="https://cdn.shopify.com/videos/c/o/v/2581e92449cb46e59c6cbf09108e4d62.mp4"
@@ -23,6 +24,11 @@
           loop
           playsinline
         ></video>
+        <div class="juice-card__platforms">
+          <button class="juice-platform-btn">1</button>
+          <button class="juice-platform-btn">2</button>
+          <button class="juice-platform-btn">3</button>
+        </div>
       </div>
       {% endfor %}
     </div>
@@ -33,6 +39,7 @@
   <div class="juice-grid">
     {% for i in (1..8) %}
     <div class="juice-card">
+      <div class="juice-card__label">Episode {{ i }}: XYZ</div>
       <video
         class="juice-video"
         src="https://cdn.shopify.com/videos/c/o/v/2581e92449cb46e59c6cbf09108e4d62.mp4"
@@ -41,6 +48,11 @@
         loop
         playsinline
       ></video>
+      <div class="juice-card__platforms">
+        <button class="juice-platform-btn">1</button>
+        <button class="juice-platform-btn">2</button>
+        <button class="juice-platform-btn">3</button>
+      </div>
     </div>
     {% endfor %}
   </div>
