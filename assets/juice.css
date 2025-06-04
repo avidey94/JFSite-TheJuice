@@ -116,14 +116,13 @@
 .swiper-pagination-bullet {
   width: 8px;
   height: 8px;
-  background: rgba(255, 255, 255, 0.5);
-  opacity: 0.5;
+  background: rgba(255, 255, 255, 0.7);
+  opacity: 1;
   margin: 0.5rem 0;
 }
 
 .swiper-pagination-bullet-active {
-  background: #f2cc43;
-  opacity: 1;
+  background-color: #ffd500;
 }
 
 /* Desktop Grid */
@@ -148,9 +147,10 @@
   .juice-card {
     position: relative;
     aspect-ratio: 9/16;
-    border-radius: 1rem;
+    border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
   .juice-card__video-container {
@@ -208,6 +208,11 @@
     gap: 0.5rem;
     flex-wrap: wrap;
   }
+
+  .juice-carousel {
+    height: auto;
+    padding: 2rem 0;
+  }
 }
 
 /* Animations */
@@ -237,4 +242,26 @@
 
 .juice-btn:nth-child(3) {
   animation-delay: 0.2s;
+}
+
+/* Ensure Swiper container fills viewport on mobile */
+.juice-carousel {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* full viewport height on mobile */
+}
+
+/* Each "card" slide should stretch to fill entire swiper container */
+.juice-carousel .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Remove default margins/padding */
+.juice-card {
+  width: 100%;
+  height: 100%;
 } 

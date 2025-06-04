@@ -14,15 +14,34 @@ class JuiceCarousel {
   }
 
   initSwiper() {
-    this.swiper = new Swiper('.juice-carousel__mobile', {
-      direction: 'vertical',
-      slidesPerView: 1,
-      spaceBetween: 0,
-      mousewheel: true,
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+
+    this.swiper = new Swiper('.juice-carousel.swiper-container', {
+      direction: isMobile ? 'vertical' : 'horizontal',
+      loop: false,
+      slidesPerView: isMobile ? 1 : 4, // default, will be overridden by breakpoints
+      spaceBetween: 16,
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
-        type: 'bullets',
+      },
+      breakpoints: {
+        // when window width is >= 768px (tablet & up)
+        768: {
+          direction: 'horizontal',
+          slidesPerView: 2,
+          spaceBetween: 16,
+        },
+        // when window width is >= 1024px (small desktop)
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 24,
+        },
+        // when window width is >= 1280px (large desktop)
+        1280: {
+          slidesPerView: 4,
+          spaceBetween: 32,
+        },
       },
       on: {
         slideChange: () => {
@@ -32,6 +51,15 @@ class JuiceCarousel {
           this.handleTouchStart();
         },
       },
+    });
+
+    // Reinitialize Swiper if the user resizes across the 768px threshold
+    window.addEventListener('resize', () => {
+      const nowMobile = window.matchMedia('(max-width: 767px)').matches;
+      if (nowMobile !== this.swiper.params.direction === 'vertical') {
+        this.swiper.changeDirection(nowMobile ? 'vertical' : 'horizontal');
+        this.swiper.update();
+      }
     });
   }
 

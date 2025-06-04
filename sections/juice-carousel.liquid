@@ -4,187 +4,48 @@
   - Desktop: Grid layout with hover effects
 {% endcomment %}
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-{{ 'juice.css' | asset_url | stylesheet_tag }}
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@9.4.1/swiper-bundle.min.css"
+/>
+<script
+  src="https://cdn.jsdelivr.net/npm/swiper@9.4.1/swiper-bundle.min.js"
+  defer
+></script>
+<link rel="stylesheet" href="{{ 'juice.css' | asset_url }}" />
+<script src="{{ 'juice.js' | asset_url }}" defer></script>
 
-<div class="juice-carousel" data-section-id="{{ section.id }}">
-  {% comment %}Mobile Carousel{% endcomment %}
-  <div class="juice-carousel__mobile swiper">
-    <div class="swiper-wrapper">
-      {% for block in section.blocks %}
-        <div class="swiper-slide juice-slide" {{ block.shopify_attributes }}>
-          <div class="juice-slide__video-container">
-            <video 
-              class="juice-slide__video"
-              playsinline
-              muted
-              loop
-              preload="metadata"
-              data-src="{{ block.settings.video | asset_url }}"
-            >
-              <source src="{{ block.settings.video | asset_url }}" type="video/mp4">
-            </video>
-            
-            <div class="juice-slide__overlay">
-              <h2 class="juice-slide__title">{{ block.settings.title }}</h2>
-              <p class="juice-slide__teaser">{{ block.settings.teaser }}</p>
-              
-              <div class="juice-slide__buttons">
-                {% if block.settings.youtube_url != blank %}
-                  <a href="{{ block.settings.youtube_url }}" class="juice-btn juice-btn--youtube" target="_blank">
-                    <i class="fab fa-youtube"></i>
-                    YouTube
-                  </a>
-                {% endif %}
-                {% if block.settings.spotify_url != blank %}
-                  <a href="{{ block.settings.spotify_url }}" class="juice-btn juice-btn--spotify" target="_blank">
-                    <i class="fab fa-spotify"></i>
-                    Spotify
-                  </a>
-                {% endif %}
-                {% if block.settings.apple_url != blank %}
-                  <a href="{{ block.settings.apple_url }}" class="juice-btn juice-btn--apple" target="_blank">
-                    <i class="fab fa-apple"></i>
-                    Apple
-                  </a>
-                {% endif %}
-              </div>
-            </div>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
-    <div class="swiper-pagination"></div>
+<div class="juice-carousel swiper-container">
+  <div class="swiper-wrapper">
+    <!-- Slide 1: Red -->
+    <div class="swiper-slide juice-card" style="background-color: #FF0000;"></div>
+    <!-- Slide 2: Orange -->
+    <div class="swiper-slide juice-card" style="background-color: #FF7F00;"></div>
+    <!-- Slide 3: Yellow -->
+    <div class="swiper-slide juice-card" style="background-color: #FFFF00;"></div>
+    <!-- Slide 4: Green -->
+    <div class="swiper-slide juice-card" style="background-color: #00FF00;"></div>
+    <!-- Slide 5: Blue -->
+    <div class="swiper-slide juice-card" style="background-color: #0000FF;"></div>
+    <!-- Slide 6: Indigo -->
+    <div class="swiper-slide juice-card" style="background-color: #4B0082;"></div>
+    <!-- Slide 7: Violet -->
+    <div class="swiper-slide juice-card" style="background-color: #8B00FF;"></div>
+    <!-- Slide 8: Pink -->
+    <div class="swiper-slide juice-card" style="background-color: #FF1493;"></div>
   </div>
-
-  {% comment %}Desktop Grid{% endcomment %}
-  <div class="juice-carousel__desktop">
-    <div class="juice-grid">
-      {% for block in section.blocks %}
-        <div class="juice-card" {{ block.shopify_attributes }}>
-          <div class="juice-card__video-container">
-            <video 
-              class="juice-card__video"
-              playsinline
-              muted
-              loop
-              preload="metadata"
-              data-src="{{ block.settings.video | asset_url }}"
-            >
-              <source src="{{ block.settings.video | asset_url }}" type="video/mp4">
-            </video>
-            
-            <div class="juice-card__overlay">
-              <h2 class="juice-card__title">{{ block.settings.title }}</h2>
-              <p class="juice-card__teaser">{{ block.settings.teaser }}</p>
-              
-              <div class="juice-card__buttons">
-                {% if block.settings.youtube_url != blank %}
-                  <a href="{{ block.settings.youtube_url }}" class="juice-btn juice-btn--youtube" target="_blank">
-                    <i class="fab fa-youtube"></i>
-                    YouTube
-                  </a>
-                {% endif %}
-                {% if block.settings.spotify_url != blank %}
-                  <a href="{{ block.settings.spotify_url }}" class="juice-btn juice-btn--spotify" target="_blank">
-                    <i class="fab fa-spotify"></i>
-                    Spotify
-                  </a>
-                {% endif %}
-                {% if block.settings.apple_url != blank %}
-                  <a href="{{ block.settings.apple_url }}" class="juice-btn juice-btn--apple" target="_blank">
-                    <i class="fab fa-apple"></i>
-                    Apple
-                  </a>
-                {% endif %}
-              </div>
-            </div>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
-  </div>
+  <!-- Pagination dots for desktop and mobile -->
+  <div class="swiper-pagination"></div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-{{ 'juice.js' | asset_url | script_tag }}
 
 {% schema %}
 {
   "name": "Juice Carousel",
-  "settings": [
-    {
-      "type": "header",
-      "content": "Carousel Settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_autoplay",
-      "label": "Enable autoplay",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_pagination",
-      "label": "Show pagination",
-      "default": true
-    }
-  ],
-  "blocks": [
-    {
-      "type": "episode",
-      "name": "Episode",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Episode Title",
-          "default": "Episode Title"
-        },
-        {
-          "type": "textarea",
-          "id": "teaser",
-          "label": "Episode Teaser",
-          "default": "Episode teaser text goes here"
-        },
-        {
-          "type": "video",
-          "id": "video",
-          "label": "Episode Video"
-        },
-        {
-          "type": "url",
-          "id": "youtube_url",
-          "label": "YouTube URL"
-        },
-        {
-          "type": "url",
-          "id": "spotify_url",
-          "label": "Spotify URL"
-        },
-        {
-          "type": "url",
-          "id": "apple_url",
-          "label": "Apple Music URL"
-        }
-      ]
-    }
-  ],
+  "settings": [],
   "presets": [
     {
       "name": "Juice Carousel",
-      "category": "Video",
-      "blocks": [
-        {
-          "type": "episode"
-        },
-        {
-          "type": "episode"
-        },
-        {
-          "type": "episode"
-        }
-      ]
+      "category": "Video"
     }
   ]
 }
