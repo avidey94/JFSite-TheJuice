@@ -1,19 +1,19 @@
 // Juice Carousel JavaScript
 
+let swiperInstance = null;
+
 // Initialize Swiper on mobile only
 document.addEventListener('DOMContentLoaded', function() {
-  initializeSwiper();
+  handleResponsiveSwiper();
 });
 
 // Handle window resize
-window.addEventListener('resize', handleResize);
+window.addEventListener('resize', handleResponsiveSwiper);
 
-function initializeSwiper() {
-  const isMobile = window.matchMedia('(max-width: 767px)').matches;
+function initSwiper() {
   const swiperContainer = document.querySelector('.juice-carousel.swiper-container');
-  
-  if (isMobile && swiperContainer && !swiperContainer.swiper) {
-    new Swiper('.juice-carousel.swiper-container', {
+  if (swiperContainer && !swiperInstance) {
+    swiperInstance = new Swiper('.juice-carousel.swiper-container', {
       direction: 'vertical',
       loop: false,
       slidesPerView: 1,
@@ -26,14 +26,19 @@ function initializeSwiper() {
   }
 }
 
-function handleResize() {
+function destroySwiper() {
+  if (swiperInstance) {
+    swiperInstance.destroy(true, true);
+    swiperInstance = null;
+  }
+}
+
+function handleResponsiveSwiper() {
   const isMobile = window.matchMedia('(max-width: 767px)').matches;
-  const swiperContainer = document.querySelector('.juice-carousel.swiper-container');
-  
-  if (isMobile && swiperContainer && !swiperContainer.swiper) {
-    initializeSwiper();
-  } else if (!isMobile && swiperContainer && swiperContainer.swiper) {
-    swiperContainer.swiper.destroy(true, true);
+  if (isMobile) {
+    initSwiper();
+  } else {
+    destroySwiper();
   }
 }
 

@@ -13,28 +13,36 @@
   {% comment %} Mobile: Swiper carousel {% endcomment %}
   <div class="juice-carousel swiper-container">
     <div class="swiper-wrapper">
-      <div class="swiper-slide juice-card" style="background-color: #FF0000;"></div>
-      <div class="swiper-slide juice-card" style="background-color: #FF7F00;"></div>
-      <div class="swiper-slide juice-card" style="background-color: #FFFF00;"></div>
-      <div class="swiper-slide juice-card" style="background-color: #00FF00;"></div>
-      <div class="swiper-slide juice-card" style="background-color: #0000FF;"></div>
-      <div class="swiper-slide juice-card" style="background-color: #4B0082;"></div>
-      <div class="swiper-slide juice-card" style="background-color: #8B00FF;"></div>
-      <div class="swiper-slide juice-card" style="background-color: #FF1493;"></div>
+      {% for i in (1..8) %}
+      <div class="swiper-slide juice-card">
+        <video
+          class="juice-video"
+          src="https://cdn.shopify.com/videos/c/o/v/2581e92449cb46e59c6cbf09108e4d62.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+        ></video>
+      </div>
+      {% endfor %}
     </div>
     <div class="swiper-pagination"></div>
   </div>
 
   {% comment %} Desktop: Grid layout {% endcomment %}
   <div class="juice-grid">
-    <div class="juice-card" style="background-color: #FF0000;"></div>
-    <div class="juice-card" style="background-color: #FF7F00;"></div>
-    <div class="juice-card" style="background-color: #FFFF00;"></div>
-    <div class="juice-card" style="background-color: #00FF00;"></div>
-    <div class="juice-card" style="background-color: #0000FF;"></div>
-    <div class="juice-card" style="background-color: #4B0082;"></div>
-    <div class="juice-card" style="background-color: #8B00FF;"></div>
-    <div class="juice-card" style="background-color: #FF1493;"></div>
+    {% for i in (1..8) %}
+    <div class="juice-card">
+      <video
+        class="juice-video"
+        src="https://cdn.shopify.com/videos/c/o/v/2581e92449cb46e59c6cbf09108e4d62.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+      ></video>
+    </div>
+    {% endfor %}
   </div>
 </div>
 

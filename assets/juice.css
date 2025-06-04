@@ -81,13 +81,21 @@
   }
 
   .juice-card {
+    position: relative;
     width: 100%;
-    aspect-ratio: 9 / 16;
+    height: 0;
+    padding-bottom: 177.78%; /* 9:16 aspect ratio */
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    background-color: inherit; /* Preserve the background color */
+    overflow: hidden;
+  }
+
+  .juice-card .juice-video {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
   }
 
   .juice-card:hover {
