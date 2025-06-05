@@ -151,7 +151,7 @@
 .juice-slide__title {
   font-family: Arial, sans-serif;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   margin-bottom: 0.5rem;
 }
 
@@ -325,7 +325,7 @@
   padding: 1rem;
   font-family: Arial, sans-serif;
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 2.1rem;
   color: #f2cc43;
   letter-spacing: 0.02em;
   z-index: 2;
@@ -350,28 +350,33 @@
 }
 
 .juice-platform-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 2.5px solid #f2cc43;
-  background: rgba(30,30,30,0.85);
-  color: #f2cc43;
-  font-family: Arial, sans-serif;
-  font-weight: bold;
-  font-size: 1.2rem;
-  box-shadow: 0 2px 8px #000, 0 0 0 2px #fff inset;
+  width: 40px; /* Default size for desktop and larger */
+  height: 40px; /* Default size for desktop and larger */
+  border-radius: 0; /* Remove circular shape */
+  border: none; /* Remove border */
+  background: transparent; /* Make background transparent */
+  /* Remove color, font-family, font-weight, font-size, box-shadow */
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  transition: transform 0.15s; /* Keep transform transition for hover */
   cursor: pointer;
   outline: none;
+  padding: 0; /* Remove padding */
 }
+
+.juice-platform-btn img {
+  display: block;
+  width: 100%; /* Make image fill the button */
+  height: 100%; /* Make image fill the button */
+  object-fit: contain; /* Ensure image is contained within the bounds */
+  border-radius: 0; /* Remove circular shape from image */
+}
+
 .juice-platform-btn:hover {
-  background: #f2cc43;
-  color: #181818;
-  border-color: #181818;
-  transform: scale(1.08) rotate(-3deg);
+  background: transparent; /* Keep transparent background on hover */
+  /* Remove color, border-color */
+  transform: scale(1.1); /* Slightly enlarge on hover */
 }
 
 /* On desktop override height so carousel is hidden anyway */
@@ -429,6 +434,18 @@
     width: auto; /* Allow width to be determined by content */
     justify-content: center; /* Center buttons horizontally */
     right: auto; /* Remove conflicting right positioning */
+    gap: 0.25rem; /* Keep reduced gap between buttons on mobile */
+  }
+
+  .juice-platform-btn {
+    width: 36px; /* Keep smaller size for mobile */
+    height: 36px; /* Keep smaller size for mobile */
+    /* Inherit other styles from base .juice-platform-btn */
+  }
+
+  .juice-platform-btn img {
+     /* Inherit styles from base .juice-platform-btn img */
+     border-radius: 0; /* Ensure image is not circular on mobile */
   }
 }
 
@@ -444,7 +461,7 @@
 
   .juice-grid {
     display: grid !important;
-    gap: 16px;
+    gap: 16px; /* Keep larger gap on desktop */
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     justify-items: center;
     max-width: 1400px;
@@ -485,22 +502,31 @@
     border-radius: 20px;
   }
   .juice-card__label {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     padding: 1.2rem 1.2rem 0.5rem 1.2rem;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
   }
-}
 
-@media (min-width: 768px) {
   .juice-card__platforms {
-    top: 20%; /* Apply 20% from top on desktop too */
-    right: auto; /* Remove right positioning for desktop */
-    left: 50%; /* Ensure centering on desktop */
-    transform: translateX(-50%); /* Ensure centering on desktop */
-    gap: 0.75rem;
+    top: 20%; /* Apply 20% from top on desktop */
+    right: auto; /* Remove right positioning */
+    left: 50%; /* Ensure centering */
+    transform: translateX(-50%); /* Ensure centering */
+    gap: 0.75rem; /* Keep larger gap on desktop */
   }
-} 
+
+  .juice-platform-btn {
+    width: 40px; /* Ensure default size on desktop */
+    height: 40px; /* Ensure default size on desktop */
+    /* Inherit other styles from base .juice-platform-btn */
+  }
+
+   .juice-platform-btn img {
+     /* Inherit styles from base .juice-platform-btn img */
+     border-radius: 0; /* Ensure image is not circular on desktop */
+   }
+}
 
 @media (max-width: 767px) {
   .juice-card__platforms {
@@ -508,7 +534,21 @@
     top: calc(20% - 22px);
     left: 50%;
     transform: translateX(-50%);
-    /* Make sure right: auto (remove any “right: 1rem” from earlier) */
+    /* Make sure right: auto (remove any "right: 1rem" from earlier) */
     right: auto;
+    gap: 0.25rem;
+  }
+
+  .juice-platform-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .juice-platform-btn img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Use cover for mobile to fill the smaller button */
+    border-radius: 0;
   }
 }
