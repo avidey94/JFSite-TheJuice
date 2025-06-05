@@ -338,13 +338,13 @@
 
 .juice-card__platforms {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  left: auto;
-  bottom: auto;
-  width: auto;
+  top: 20%; /* Position 20% down from the top */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust for the element's width */
+  /* Remove right: 1rem; */
+  /* Keep bottom: auto; width: auto; */
   display: flex;
-  justify-content: flex-end;
+  justify-content: center; /* Center buttons horizontally */
   gap: 0.5rem;
   z-index: 3;
 }
@@ -415,10 +415,20 @@
     border-radius: 0;
     display: block;
   }
-  .juice-card__label,
-  .juice-card__platforms {
+  .juice-card__label {
     border-radius: 0;
-    left: 0; width: 100%;
+    left: 0; width: 100%; /* Keep these for the label */
+  }
+
+  /* Ensure specific styles for platforms on mobile */
+  .juice-card__platforms {
+    position: absolute; /* Ensure absolute positioning */
+    top: 20%; /* Position 20% down from the top */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for the element's width */
+    width: auto; /* Allow width to be determined by content */
+    justify-content: center; /* Center buttons horizontally */
+    right: auto; /* Remove conflicting right positioning */
   }
 }
 
@@ -484,8 +494,21 @@
 
 @media (min-width: 768px) {
   .juice-card__platforms {
-    top: 1.2rem;
-    right: 1.2rem;
+    top: 20%; /* Apply 20% from top on desktop too */
+    right: auto; /* Remove right positioning for desktop */
+    left: 50%; /* Ensure centering on desktop */
+    transform: translateX(-50%); /* Ensure centering on desktop */
     gap: 0.75rem;
   }
 } 
+
+@media (max-width: 767px) {
+  .juice-card__platforms {
+    /* Center 44×44px icons at 20% down the card: */
+    top: calc(20% - 22px);
+    left: 50%;
+    transform: translateX(-50%);
+    /* Make sure right: auto (remove any “right: 1rem” from earlier) */
+    right: auto;
+  }
+}
