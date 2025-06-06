@@ -346,7 +346,7 @@
   display: flex;
   justify-content: center; /* Center buttons horizontally */
   gap: 0.5rem;
-  z-index: 3;
+  z-index: 100; /* Increase z-index to appear above sticky header */
 }
 
 .juice-platform-btn {
@@ -435,6 +435,7 @@
     justify-content: center; /* Center buttons horizontally */
     right: auto; /* Remove conflicting right positioning */
     gap: 0.25rem; /* Keep reduced gap between buttons on mobile */
+    z-index: 100; /* Apply higher z-index on mobile too */
   }
 
   .juice-platform-btn {
@@ -514,6 +515,7 @@
     left: 50%; /* Ensure centering */
     transform: translateX(-50%); /* Ensure centering */
     gap: 0.75rem; /* Keep larger gap on desktop */
+    z-index: 100; /* Apply higher z-index on desktop */
   }
 
   .juice-platform-btn {
